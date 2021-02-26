@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 function Header() {
     return (
         <HeaderContainer>
-            <Name>Juego de memoria</Name>
+            <Name><SportsEsportsIcon style={{fontSize: '2em'}} /> Memoria de Heroes.</Name>
             <ButtonRestart>Reiniciar juego</ButtonRestart>
             <Counter>Numero de intentos</Counter>
         </HeaderContainer>
@@ -28,6 +29,8 @@ const HeaderContainer = styled.div`
 const Name = styled.div`
     font-size: 2em;
     padding: 10px 0;
+    display: flex;
+    align-items: center;
 `
 const ButtonRestart = styled.button`
     border: none;

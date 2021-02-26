@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
-function Header() {
+function Header({ timesTried, resetGame }) {
     return (
         <HeaderContainer>
             <Name><SportsEsportsIcon style={{fontSize: '2em'}} /> Memoria de Heroes.</Name>
-            <ButtonRestart>Reiniciar juego</ButtonRestart>
-            <Counter>Numero de intentos</Counter>
+            <ButtonRestart onClick={resetGame}>Reiniciar juego</ButtonRestart>
+            <Counter>Numero de intentos: {timesTried}</Counter>
         </HeaderContainer>
     )
 }

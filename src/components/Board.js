@@ -2,13 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
-function Board({cards}) {
+function Board({cards, selectedItems, selectCard}) {
     const {deck} = cards
     console.log('items', deck)
     return (
         <BoardContainer id="boardContainer">
             {
-               deck && deck.map((card) => (<Card card={card} />))
+               deck && deck.map((card, index) => {
+                const isSelected = selectedItems.indexOf(card) > -1                   
+                return (<Card key={index} card={card} isSelected={isSelected} selectCard={() => selectCard(card)} winner={card.winner} />)
+               })
             }
         </BoardContainer>
     )

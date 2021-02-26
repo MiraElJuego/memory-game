@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import "flip-card-wc"
 
-function Card({ card }) {
-    return (
-        <CardContainer>
-            <flip-card variant="click" class="card">
-                <div slot="front" class="front">{(card.icon)}{card.letter}</div>
-                <div slot="back" class="back">
+function Card({ card, selectCard, isSelected, winner }) {
+    console.log({winner, isSelected})
+    return (            
+        <CardContainer onClick={selectCard}>
+            <flip-card variant={isSelected || winner ? 'none': 'click'} class="card">
+                <div slot="front" className="front">{(card.icon)}{card.letter}</div>
+                <div slot="back" className="back">
                     <img src="https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e3b35c5ce2a1/clean.jpg" alt="titulo"/>
                 </div>
             </flip-card>            

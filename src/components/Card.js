@@ -1,10 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import "flip-card-wc"
 
 function Card({ card }) {
     return (
-        <CardContainer letter={card.letter}>
-            <Icon>{(card.icon)}</Icon>        
+        <CardContainer>
+            <flip-card variant="click" class="card">
+                <div slot="front" class="front">{(card.icon)}{card.letter}</div>
+                <div slot="back" class="back">
+                    <img src="https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e3b35c5ce2a1/clean.jpg" alt="titulo"/>
+                </div>
+            </flip-card>            
         </CardContainer>
     )
 }
@@ -12,30 +18,53 @@ function Card({ card }) {
 export default Card
 
 const CardContainer = styled.div`
+    margin: 5px 0;
     width: 200px;
     height: 200px; 
-    background: orange;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3em;
-    :hover {        
-        opacity: 0.9;
+    --flip-card-height: 200px;
+    .front {
+        width: 200px;
+        height: 200px; 
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;    
+        background: orange;
+        svg {
+            width: 50px;
+            height: 50px;
+            color: white;
+            background: transparent;
+        }
         cursor: pointer;
-    }
-    :hover:after {
-        content: '${props => props.letter ? props.letter: ''}';
-    }
-`
+    }    
+    .back {
+        position: relative;
+        width: 200px;
+        height: 200px; 
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;    
+        background: white;
+        background-size: cover;
 
-const Icon = styled.span`
-    background: transparent;
-    svg {
-        width: 50px;
-        height: 50px;
-        color: white;
-        background: transparent;
+        img {
+            z-index: 1;
+            height: 200px;        
+        }
     }
-    
+    .back::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: "";
+        z-index: 0;
+        opacity: .5;
+        background: url('https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e3b35c5ce2a1/clean.jpg') center center;
+    }
 `

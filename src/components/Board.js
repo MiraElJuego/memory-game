@@ -2,18 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
-function Board() {
-    // 36 cartas
-    const cards = [
-        1,2,3,4,5,6,7,8,9,
-        1,2,3,4,5,6,7,8,9,
-        1,2,3,4,5,6,7,8,9,
-        1,2,3,4,5,6,7,8,9
-    ]
+function Board({cards}) {
+    const {deck} = cards
+    console.log('items', deck)
     return (
-        <BoardContainer>
+        <BoardContainer id="boardContainer">
             {
-                cards.map((card) => (<Card name={card} />))
+               deck && deck.map((card) => (<Card card={card} />))
             }
         </BoardContainer>
     )

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Card({ name }) {
+function Card({ card }) {
     return (
-        <CardContainer>
-            {name}
+        <CardContainer letter={card.letter}>
+            <Icon>{(card.icon)}</Icon>        
         </CardContainer>
     )
 }
@@ -25,6 +25,17 @@ const CardContainer = styled.div`
         cursor: pointer;
     }
     :hover:after {
-        content: 'A';
+        content: '${props => props.letter ? props.letter: ''}';
     }
+`
+
+const Icon = styled.span`
+    background: transparent;
+    svg {
+        width: 50px;
+        height: 50px;
+        color: white;
+        background: transparent;
+    }
+    
 `

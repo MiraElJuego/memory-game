@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import "flip-card-wc"
 
 function Card({ card, selectCard, isSelected, winner }) {
-    console.log({winner, isSelected})
     return (            
         <CardContainer onClick={selectCard} image={card.image}>
             <flip-card variant={isSelected || winner ? 'none': 'click'} class="card">

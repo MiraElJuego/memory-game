@@ -19,6 +19,7 @@ function App() {
   const [cards, setCards] = useState(getInitialStatus())
 
   const selectCard = (card) => {
+    console.log({cards, card})    
     if (
       cards.isCompared ||
       cards.selectedItems.indexOf(card) > -1 ||
@@ -27,8 +28,7 @@ function App() {
       return;
     }
 
-    const selectedItems = [...cards.selectedItems, card]
-    
+    const selectedItems = [...cards.selectedItems, card]    
     if (selectedItems.length === 2) {      
       compareCards(selectedItems)
     } else {

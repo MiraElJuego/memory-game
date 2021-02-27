@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import Card from './Card'
 
 function Board({cards, selectedItems, selectCard}) {
-    const {deck} = cards
-    console.log('items', deck)
+    const {deck} = cards    
     return (
         <BoardContainer id="boardContainer">
             {

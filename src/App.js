@@ -38,30 +38,37 @@ function App() {
 
   const compareCards = (selectedItems) => {
     console.log('Ha seleccionado 2 cartas')
-    setCards({deck: cards.deck, selectedItems, isCompared: true, timesTried: cards.timesTried})
-    setTimeout(() => {
+    setCards({deck: cards.deck, selectedItems, isCompared: true, timesTried: cards.timesTried})    
+    setTimeout(() => {      
       const [firstCard, secondCard] = selectedItems
       let deck = cards.deck
+      console.log({c1:firstCard.value, c2:secondCard.value})
       if (firstCard.value === secondCard.value) {
-        deck = deck.map((card) => {
-          if (card.value !== firstCard.value) {
+        deck = deck.map((card) => {                    
+          if (card.value !== firstCard.value) {            
             return card;
           } else {
+            console.log({card, winner: true})
             return {...card, winner: true}
           }
         })
-      }
+      }            
       winnerVerification(deck)
-      setCards({deck: deck, selectedItems:[], isCompared: false, timesTried: cards.timesTried + 1})
+      setCards({deck: deck, selectedItems:[], isCompared: false, timesTried: cards.timesTried + 1})      
     }, 1000)
   }
 
   const winnerVerification = (deck) => {
-    //deck.forEach((card) => card.winner = true)
+    deck.forEach((card) => card.winner = true)
     if (
       deck.filter((card) => !card.winner).length === 0
     ) {
-      alert(`Haz ganado en ${cards.timesTried} intentos`)
+      if (cards.timesTried > 0) {
+        alert(`Haz ganado en ${cards.timesTried} ${(cards.timesTried > 1) ? 'intentos': 'intento'}.`)
+      } else {
+        alert(`Felicidades no se como le hiciste pero haz ganado.`)
+      }      
+      resetGame()
     }
   }
 

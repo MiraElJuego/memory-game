@@ -5,13 +5,13 @@ import "flip-card-wc"
 function Card({ card, selectCard, isSelected, winner }) {
     console.log({winner, isSelected})
     return (            
-        <CardContainer onClick={selectCard}>
+        <CardContainer onClick={selectCard} image={card.image}>
             <flip-card variant={isSelected || winner ? 'none': 'click'} class="card">
-                <div slot="front" className="front">{(card.icon)}{card.letter}</div>
+                <div slot="front" className="front">{(card.icon)}{card.letter}{card.value}</div>
                 <div slot="back" className="back">
-                    <img src="https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e3b35c5ce2a1/clean.jpg" alt="titulo"/>
+                    <img src={card.image} alt="titulo"/>
                 </div>
-            </flip-card>            
+            </flip-card>
         </CardContainer>
     )
 }
@@ -54,7 +54,7 @@ const CardContainer = styled.div`
 
         img {
             z-index: 1;
-            height: 200px;        
+            height: 160px;        
         }
     }
     .back::before {
@@ -66,6 +66,6 @@ const CardContainer = styled.div`
         content: "";
         z-index: 0;
         opacity: .5;
-        background: url('https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e3b35c5ce2a1/clean.jpg') center center;
+        background: url('${props => props.image}') center center;
     }
 `

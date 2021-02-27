@@ -28,9 +28,11 @@ function App() {
     }
 
     const selectedItems = [...cards.selectedItems, card]
-    setCards({deck: cards.deck, selectedItems, isCompared: false, timesTried: cards.timesTried})
+    
     if (selectedItems.length === 2) {      
       compareCards(selectedItems)
+    } else {
+      setCards({deck: cards.deck, selectedItems, isCompared: false, timesTried: cards.timesTried})
     }
   }
 

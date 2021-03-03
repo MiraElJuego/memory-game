@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
+import CardFlip from './CardFlip'
 
 function Board({cards, selectedItems, selectCard}) {
     const {deck} = cards    
@@ -9,7 +10,7 @@ function Board({cards, selectedItems, selectCard}) {
             {
                deck && deck.map((card, index) => {
                 const isSelected = selectedItems.indexOf(card) > -1                   
-                return (<Card key={index} card={card} isSelected={isSelected} selectCard={() => selectCard(card)} winner={card.winner} />)
+                return (<CardFlip key={index} card={card} isSelected={isSelected} selectCard={() => selectCard(card)} winner={card.winner} />)
                })
             }
         </BoardContainer>

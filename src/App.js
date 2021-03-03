@@ -19,7 +19,6 @@ function App() {
   const [cards, setCards] = useState(getInitialStatus())
 
   const selectCard = (card) => {
-    console.log({cards, card})    
     if (
       cards.isCompared ||
       cards.selectedItems.indexOf(card) > -1 ||
@@ -27,13 +26,12 @@ function App() {
     ) {
       return;
     }
-
+    
     const selectedItems = [...cards.selectedItems, card]    
+    setCards({deck: cards.deck, selectedItems, isCompared: false, timesTried: cards.timesTried})
     if (selectedItems.length === 2) {      
       compareCards(selectedItems)
-    } else {
-      setCards({deck: cards.deck, selectedItems, isCompared: false, timesTried: cards.timesTried})
-    }
+    } 
   }
 
   const compareCards = (selectedItems) => {
@@ -42,13 +40,11 @@ function App() {
     setTimeout(() => {      
       const [firstCard, secondCard] = selectedItems
       let deck = cards.deck
-      console.log({c1:firstCard.value, c2:secondCard.value})
       if (firstCard.value === secondCard.value) {
         deck = deck.map((card) => {                    
           if (card.value !== firstCard.value) {            
             return card;
           } else {
-            console.log({card, winner: true})
             return {...card, winner: true}
           }
         })
@@ -59,7 +55,7 @@ function App() {
   }
 
   const winnerVerification = (deck) => {
-    deck.forEach((card) => card.winner = true)
+    //deck.forEach((card) => card.winner = true)
     if (
       deck.filter((card) => !card.winner).length === 0
     ) {
